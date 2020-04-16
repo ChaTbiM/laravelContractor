@@ -18,3 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/login", "AuthController@login");
+Route::post("/register", "AuthController@register");
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::post("/logout", "AuthController@logout");
+    Route::get('/auth', function () {
+        return response()->json("you are authenticated", 201);
+    });
+});
