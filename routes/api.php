@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\User; // delete later
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,7 +24,7 @@ Route::post("/login", "AuthController@login");
 Route::post("/register", "AuthController@register");
 
 Route::get("/test", function () {
-    return response()->json("api working", 201);
+    return response()->json(User::all(), 201);
 });
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post("/logout", "AuthController@logout");
