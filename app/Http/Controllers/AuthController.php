@@ -63,8 +63,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $token = $request->bearerToken();
-        // try to invalidate token
         try {
+            // try to invalidate token
             JWTAuth::invalidate($token);
 
             return response()->json([
