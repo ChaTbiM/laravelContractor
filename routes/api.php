@@ -16,9 +16,9 @@ use App\User; // delete later
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post("/login", "AuthController@login");
 Route::post("/register", "AuthController@register");
@@ -28,7 +28,7 @@ Route::get("/test", function () {
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {
-    // Route::post("/user", "AuthController@getAuthenticatedUser");
+    Route::get("/user", "AuthController@getAuthenticatedUser");
 
     Route::post("/logout", "AuthController@logout");
 });
