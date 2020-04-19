@@ -28,6 +28,9 @@ Route::get("/test", function () {
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {
-    Route::get("/user", "AuthController@getAuthenticatedUser");
+    // Route::get("/user", "AuthController@getAuthenticatedUser");
+    Route::get("/user", function (Request $request) {
+        return $request->user();
+    });
     Route::post("/logout", "AuthController@logout");
 });
