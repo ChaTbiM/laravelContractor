@@ -31,7 +31,7 @@ class AuthController extends Controller
         }
 
         // if it get's here return token
-        return response()->json($token, 201);
+        return response()->json(["token" => $token], 201);
     }
 
     public function register(Request $request)
