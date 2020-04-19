@@ -23,6 +23,10 @@ use App\User; // delete later
 Route::post("/login", "AuthController@login");
 Route::post("/register", "AuthController@register");
 
+Route::get("/test", function () {
+    return response()->json(User::all(), 200);
+});
+
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get("/user", "AuthController@getAuthenticatedUser");
     Route::post("/logout", "AuthController@logout");
